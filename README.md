@@ -2,14 +2,13 @@
 
 ## 📚 Table des matières
 
-1. [Installation](#installation)
-2. [Configuration](#configuration)
-3. [Model](#model)
-4. [View](#view)
-5. [Template](#template)
-6. [Utilisation](#utilisation)
-7. [Contribuer](#contribuer)
-8. [Licence](#licence)
+1. [🛠️ Installation](#-installation)
+2. [⚙️ Configuration](#️-configuration)
+3. [📊 Model](#-model)
+4. [🔍 View](#-view)
+5. [🖼️ Template](#️-template)
+6. [👑 Administration Django](#-administration-django)
+7. [🧾 Afficher dynamiquement le menu](#-afficher-dynamiquement-le-menu)
 
 ---
 
