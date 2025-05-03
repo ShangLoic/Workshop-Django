@@ -302,25 +302,10 @@ Dans ton application `menu/`, crée un dossier `templates/menu/` :
 
 ```bash
 mkdir -p menu/templates/menu
-touch menu/templates/menu/accueil.html
 ```
 
-Puis écris dans ce fichier :
-
-```html
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Accueil FastFood</title>
-</head>
-<body>
-    <h1>Bienvenue chez FastFood !</h1>
-    <p>Des plats rapides, délicieux et abordables.</p>
-</body>
-</html>
-```
-(page plus belle, html à améliorer)
+Place ensuite dans ce dossier le fichier `accueil.html` fourni dans `pages_html/`.
+> 📝 On ne s'attarde pas sur le contenu HTML ici, ce n'est pas le but du workshop.
 
 ### 2. Modifier la vue pour utiliser le template
 
@@ -333,7 +318,7 @@ def accueil(request):
     return render(request, 'menu/accueil.html')
 ```
 
-ici, la fonction render te permet d'associer une requête https avec une page html. Donc lorsque la fonction accueil sera appelée, il renvera la page accueil.html ainsi que sa requête (explication à améliorer).
+💡 `render()` permet de lier une requête à un fichier HTML et de l'afficher. Ainsi, lorsque Django appelle la vue `accueil`, il retourne le contenu de `accueil.html`.
 
 ### 3. Relancer le serveur et tester
 
@@ -343,7 +328,9 @@ Lance à nouveau le serveur si besoin :
 python manage.py runserver
 ```
 
-Va sur [http://127.0.0.1:8000/](http://127.0.0.1:8000/) pour voir ton template affiché ! 🎉
+🎉 Va sur [http://127.0.0.1:8000/](http://127.0.0.1:8000/) pour voir ton template affiché, qui devrait ressembler à ça :
+
+![Accueil](Images/accueil.png "Accueil")
 
 ---
 
