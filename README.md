@@ -580,20 +580,24 @@ Tu as maintenant :
 * Un filtre pour voir uniquement les plats disponibles/indisponibles
 * Une barre de recherche pour trouver rapidement des plats
 
-### 6. Autres
+### 6. Autres personnalisations
 
-Tu peux plus ou moins tout changer dans l'interface admin comme on a vu plus tôt. Comme le formulaire d'édition, ou encore les actions personnalisées.
-Ce sont des notions moins importantes alors on ne va pas passer de temps dessus, mais tu es libre de le faire par toi-même.
+Comme tu as pu le voir, tu peux modifier de nombreux éléments dans l'interface d’administration :
+le formulaire d’édition, l’affichage des champs, les actions personnalisées, etc.
+
+Ces fonctionnalités sont utiles, mais secondaires dans le cadre de ce workshop.
+Tu es libre d’explorer ces options par toi-même si tu veux aller plus loin !
 
 ---
 
 ### 🧠 Récapitulatif
 
-* Tu as créé un superutilisateur pour accéder à l'interface d'administration
-* Tu as ajouté des plats à ton restaurant via l'interface
-* Tu as personnalisé l'affichage de la liste des plats
+* ✅ Tu as créé un superutilisateur pour accéder à l’interface d’administration
+* 🍽️ Tu as ajouté des plats à ton restaurant via l’interface
+* 🎨 Tu as personnalisé l’affichage de la liste des plats
 
-L'administration Django est un outil puissant qui te fait gagner énormément de temps dans le développement. Tu peux ainsi te concentrer sur les fonctionnalités spécifiques à ton application, sachant que les opérations CRUD de base sont déjà couvertes.
+L’administration Django est un outil puissant : elle te fait gagner un temps précieux en gérant automatiquement les opérations CRUD de base.
+Tu peux ainsi te concentrer sur les vraies fonctionnalités de ton application !
 
 ---
 
