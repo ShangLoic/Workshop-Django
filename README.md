@@ -1,4 +1,4 @@
-# 🍔 Workshop Django - Création d'un mini site FastFood
+#  Workshop Django
 
 ## 📚 Table des matières
 
@@ -72,9 +72,12 @@ python -m pip install Django
 
 ---
 
-**Conclusion de l'installation :**
+🖖️ **Résumé jusqu’ici :**
 
-Tu viens d'installer Django dans un environnement virtuel. Cela signifie que Django est installé localement pour ce projet, et il est isolé des autres projets Python de ta machine. Pour l'utiliser, il te suffit d'activer l'environnement virtuel avec la commande `source workshop/bin/activate` (ou l'équivalent sur ton système). Une fois l'environnement activé, tu peux commencer à travailler sur ton projet Django sans interférer avec d'autres installations Python.
+- Tu viens d’installer Django dans un environnement virtuel
+- L’installation est locale au projet et isolée des autres projets Python
+- Pour utiliser Django, active l’environnement avec `source workshop/bin/activate` (ou équivalent selon ton système)
+- Une fois activé, tu peux travailler sur ton projet sans interférer avec d’autres installations Python
 
 ---
 
@@ -168,7 +171,7 @@ Tu es maintenant prêt à créer ton **premier modèle Django** ! 🎉
 
 ## 📊 Model
 
-Les **modèles** sont le cœur du système de base de données de Django. Ils permettent de définir la structure des données de ton application sous forme de classes Python. Django se charge ensuite de créer les tables SQL correspondantes.
+Les **modèles** sont le cœur du système de base de données de Django. Ils définissent la structure des données de ton application sous forme de classes Python. Django se charge ensuite de créer les tables SQL correspondantes.
 
 ### 1. Définir un modèle `Plat`
 
@@ -342,154 +345,6 @@ python manage.py runserver
 
 Tu peux maintenant afficher des pages HTML dynamiques avec Django ! 🧩
 
-_______________________________________________________________________
-
-## 👑 Administration Django
-
-L'interface d'administration de Django est l'un des atouts majeurs du framework. Elle te permet de gérer facilement les données de ton application sans avoir à coder.
-
-### 1. Créer un superutilisateur
-
-Pour accéder à l'interface d'administration, tu dois d'abord créer un **superutilisateur** :
-
-```bash
-python manage.py createsuperuser
-```
-
-Réponds aux questions qui suivent :
-- Nom d'utilisateur (ex: admin)
-- Email (facultatif)
-- Mot de passe (il sera masqué quand tu taperas)
-
-```
-Username (leave blank to use 'user'): admin
-Email address:
-Password: ********
-Password (again): ********
-Superuser created successfully.
-```
-
-### 2. Accéder à l'interface d'administration
-
-Accède à l'interface d'administration via [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
-
-![Interface admin Django](Images/admin.png "Page de connexion admin")
-
-Connecte-toi avec les identifiants que tu viens de créer.
-
-### 3. Explorer l'interface d'administration
-
-Une fois connecté, tu verras une interface similaire à celle-ci :
-
-![Dashboard admin Django](Images/interfaceAdmin.png "Dashboard admin")
-
-Tu peux voir :
-- Les groupes d'utilisateurs (Groups)
-- Les utilisateurs (Users)
-- Ton modèle Plat que tu as enregistré précédemment dans `admin.py`
-
-### 4. Ajouter des plats
-
-Clique sur "Plats" puis sur "Ajouter plat" pour créer un nouveau plat :
-
-![Ajout plat](Images/addPlats.png "Formulaire d'ajout de plat")
-
-Remplis les champs et clique sur "Enregistrer". Tu peux maintenant voir ton plat dans la liste.
-
-Essaie d'ajouter plusieurs plats pour ton restaurant FastFood :
-
-1. 🍔 **Burger Classic** - Un délicieux burger avec steak, salade, tomate et sauce maison - 8.99€
-2. 🍟 **Frites Maison** - Nos frites fraîches, croustillantes à l'extérieur et moelleuses à l'intérieur - 3.50€
-3. 🌮 **Tacos XL** - Tortilla garnie de viande, légumes et sauce au choix - 7.99€
-
-### 5. Personnaliser l'interface d'administration
-
-Tu peux personnaliser l'affichage de tes modèles dans l'interface d'administration. Dans `menu/admin.py`, remplace le code existant par :
-
-```python
-from django.contrib import admin
-from .models import Plat
-
-class PlatAdmin(admin.ModelAdmin):
-    list_display = ('nom', 'prix', 'disponible')  # Colonnes à afficher dans la liste
-    list_filter = ('disponible',)  # Filtres disponibles
-    search_fields = ('nom', 'description')  # Champs de recherche
-
-admin.site.register(Plat, PlatAdmin)
-```
-
-Rafraîchis ta page d'administration et observe les changements :
-
-![Admin personnalisé](Images/interfaceFiltre.png "Interface d'administration personnalisée")
-
-Tu as maintenant :
-- Une liste avec des colonnes plus informatives
-- Un filtre pour voir uniquement les plats disponibles/indisponibles
-- Une barre de recherche pour trouver rapidement des plats
-
-### 6. Autres
-
-Tu peux plus ou moins tout changer dans l'interface admin comme on a vu plus tôt. Comme le formulaire d'édition, ou encore les actions personnalisées.
-Ce sont des notions moins importantes alors on ne va pas passer de temps dessus, mais tu es libre de le faire par toi-même.
-
----
-
-### 🧠 Récapitulatif
-
-- Tu as créé un superutilisateur pour accéder à l'interface d'administration
-- Tu as ajouté des plats à ton restaurant via l'interface
-- Tu as personnalisé l'affichage de la liste des plats
-
-L'administration Django est un outil puissant qui te fait gagner énormément de temps dans le développement. Tu peux ainsi te concentrer sur les fonctionnalités spécifiques à ton application, sachant que les opérations CRUD de base sont déjà couvertes.
-Tu peux plus ou moins tout changer dans l'interface admin comme on a vu plus tôt. Comme le formulaire d'édition, ou encore les actions personnalisées.
-Ce sont des notions moins importantes alors on ne va pas passer de temps dessus, mais tu es libre de le faire par toi-même.
-
-_______________________________________________________________________
-
-## 🧾 Afficher dynamiquement le menu
-
-Maintenant que tu as un modèle `Plat` en base de données, tu vas l'afficher dynamiquement dans ton template d'accueil.
-
-### 1. Modifier la vue
-
-Dans `menu/views.py`, passe les plats à ton template :
-
-```python
-from django.shortcuts import render
-from .models import Plat             # Importe le modèle
-
-def accueil(request):
-    return render(request, 'menu/accueil.html')
-
-def menu(request):                  # Ajoute la vue de la page menu
-    plats = Plat.objects.all();     # On récupère tous les plats
-    return render(request, 'menu/menu.html',
-    {
-        'plats': plats,             # Et on l'envoie à notre template
-    })
-
-```
-
-Cette vue va chercher tous les plats disponibles et les transmet à la page `accueil.html`.
-
----
-
-### 2. Modifier le template `accueil.html`
-
-Comme tout à l'heure, on va déplacer `menu.html` dans le dossier `menu/templates/menu` pour ne pas s'attarder sur la partie HTML.
-
-
-
----
-
-### 🧠 Récapitulatif
-
-- Tu as récupéré les objets `Plat` depuis la base de données
-- Tu les as transmis à ton template avec `render()`
-- Tu les as affichés dynamiquement avec une boucle `{% for %}` dans le HTML
-
-Tu as maintenant une page d'accueil dynamique qui affiche les plats de ton fast-food ! 🍟
-
 ---
 
 ## 👑 Administration Django
@@ -618,7 +473,7 @@ from django.views.decorators.cache import never_cache
 def accueil(request):
     return render(request, 'menu/accueil.html')
 
-@never_cache                    # Ajoute ceci 
+@never_cache                    # Ajoute ceci
 def menu(request):
     plats = Plat.objects.all()  # On récupère tous les plats
     return render(request, 'menu/menu.html', {
